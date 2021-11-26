@@ -26,7 +26,8 @@ public class Penis {
 				double distance = (Cx - x) * (Cx - x) + (Cy - y) * (Cy - y);
 				
 				if (distance <= radius*radius){
-					display.setPixel(x, y);
+					synchronized (display.frontBuffer){
+					display.setPixel(x, y);}
 				}
 			}
 		}
@@ -46,7 +47,8 @@ public class Penis {
 		for (int j=0;j<diameter;j++) {
 		int a = (int)((double)(j*Math.cos(angle*Math.PI/180.0)));
 		int b = (int)((double)(j*Math.sin(angle*Math.PI/180.0)));
-		display.drawLine(Xx-a, Yy-b,XTop-a,YTop-b ); }
+		synchronized (display.frontBuffer){
+		display.drawLine(Xx-a, Yy-b,XTop-a,YTop-b ); }}
 		
 		XTop=Cx-(int)((double)((diameter/2.0)*Math.cos(angle*Math.PI/180.0)));
 		YTop=Cy-(int)((double)((diameter/2.0)*Math.sin(angle*Math.PI/180.0)));
@@ -55,9 +57,10 @@ public class Penis {
 		for (int k=0; k<length;k++) {
 			int a = (int)((double)(k*Math.cos(angle*Math.PI/180.0+Math.PI/2.0)));
 			int b = (int)((double)(k*Math.sin(angle*Math.PI/180.0+Math.PI/2.0)));
-
+			synchronized (display.frontBuffer){
 			display.drawLine(Xx-a, Yy-b,XTop-a,YTop-b );	
 		}
+	}
 		
 		
 	}	
@@ -89,7 +92,8 @@ public static void wait(int ms)
 
 public static void main(String[] args) {
 		display = new FunGraphics(GRAPHICS_WIDTH, GRAPHICS_HEIGHT, "", true);
-		display.clear(Color.black);
+		synchronized (display.frontBuffer){
+		display.clear(Color.black);}
 		double seconds1=0;
 		
 		for (int n=0;n<360; n+=30) {
