@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.util.Calendar;
 
 
+/**
+ * Simple bout de code pour s'entraîner avec la class Fungraphics et rigoler durant les cours de compléments de INF1 à l'HEVS
+ * @see FunGraphics
+ * @author Julien Chevalley
+ */
 public class Penis {
 	final static int GRAPHICS_WIDTH = 640;
 	final static int GRAPHICS_HEIGHT = 480;
